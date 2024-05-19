@@ -2,19 +2,16 @@ import React from 'react';
 import { UnsplashResImage } from '../../api/unsplash-api';
 
 interface ImageCardProps {
-  imageArray: UnsplashResImage;
-  onImgClick: (url: string) => void;
+  image: UnsplashResImage;
+  onImgClick: () => void;
 }
 
-const ImageCard: React.FC<ImageCardProps> = ({ imageArray, onImgClick }) => {
-  const { urls, description } = imageArray;
-  const { small, regular } = urls;
-  const handleClick = () => {
-    onImgClick(regular);
-  };
+const ImageCard: React.FC<ImageCardProps> = ({ image, onImgClick }) => {
+  const { urls, description } = image;
+  const { small } = urls;
   return (
     <div>
-      <img src={small} alt={description || 'Image'} onClick={handleClick} />
+      <img src={small} alt={description || 'Image'} onClick={onImgClick} />
     </div>
   );
 };

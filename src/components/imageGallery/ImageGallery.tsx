@@ -5,7 +5,7 @@ import css from './ImageGallery.module.css';
 
 interface ImageGalleryProps {
   imageArray: UnsplashResImage[];
-  onImgClick: (url: string) => void;
+  onImgClick: (image: { src: string; alt: string }) => void;
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({
@@ -17,7 +17,15 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       <ul className={css.gallery}>
         {imageArray.map(img => (
           <li key={img.id} className={css.galleryImg}>
-            <ImageCard imageArray={img} onImgClick={onImgClick} />
+            <ImageCard
+              image={img}
+              onImgClick={() =>
+                onImgClick({
+                  src: img.urls.regular,
+                  alt: img.description || 'Image',
+                })
+              }
+            />
           </li>
         ))}
       </ul>
