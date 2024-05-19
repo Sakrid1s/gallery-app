@@ -1,7 +1,17 @@
+import React from 'react';
+import { UnsplashResImage } from '../../api/unsplash-api';
 import ImageCard from '../imageCard/ImageCard';
 import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ imageArray, onImgClick }) => {
+interface ImageGalleryProps {
+  imageArray: UnsplashResImage[];
+  onImgClick: (url: string) => void;
+}
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({
+  imageArray,
+  onImgClick,
+}) => {
   return (
     <div>
       <ul className={css.gallery}>

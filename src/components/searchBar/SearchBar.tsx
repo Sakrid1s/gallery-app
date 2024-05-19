@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search images and photos..."
         />
         <button type="submit" className={css.formBtn}>
           Search
