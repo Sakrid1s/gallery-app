@@ -30,7 +30,9 @@ function App() {
         setLoading(false);
       }
     }
-    fetchImages();
+    if (searchValue) {
+      fetchImages();
+    }
   }, [searchValue, page]);
 
   const handleSearch = async inputValue => {
