@@ -23,6 +23,7 @@ function App() {
   const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(
     null
   );
+  const [hasMoreImages, setHasMoreImages] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchImages() {
@@ -30,7 +31,11 @@ function App() {
         setLoading(true);
         const data = await getUnsplashImages(searchValue, page);
         const res = data.results;
-        setImages(prevImages => [...prevImages, ...res]);
+        if (res.length === 0) {
+          setHasMoreImages(false);
+        } else {
+          setImages(prevImages => [...prevImages, ...res]);
+        }
       } catch (error) {
         setIsError(true);
       } finally {
@@ -46,6 +51,7 @@ function App() {
     setSearchValue(inputValue);
     setPage(1);
     setImages([]);
+    setHasMoreImages(true);
   };
 
   const onLoadMoreBtnClick = async () => {
@@ -71,7 +77,9 @@ function App() {
         <ImageGallery imageArray={images} onImgClick={openModal} />
       )}
       {loading && <Loader />}
-      {images.length > 0 && <LoadMoreBtn onClick={onLoadMoreBtnClick} />}
+      {images.length > 0 && hasMoreImages && (
+        <LoadMoreBtn onClick={onLoadMoreBtnClick} />
+      )}
       <ImageModal
         image={selectedImage}
         isOpen={isOpen}
