@@ -1,4 +1,4 @@
-.gallery {
+/* .gallery {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -12,4 +12,35 @@
   width: 400px;
   height: 250px;
   overflow: hidden;
+} */
+
+/* ImageGallery.module.css */
+
+/* ImageGallery.module.css */
+
+.gallery {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.galleryImg {
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.galleryImg img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.galleryImg:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }

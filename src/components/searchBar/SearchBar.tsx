@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => {
     form.reset();
   };
   return (
-    <header>
+    <header className={css.header}>
       <form onSubmit={handleSubmit} className={css.form}>
         <input
           className={css.formInput}

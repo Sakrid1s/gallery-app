@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import { getUnsplashImages } from './api/unsplash-api';
+import { getUnsplashImages, UnsplashResImage } from './api/unsplash-api';
 import SearchBar from './components/searchBar/SearchBar';
 import ImageGallery from './components/imageGallery/ImageGallery';
 import Loader from './components/loader/Loader';
 import ErrorMessage from './components/errorMessage/ErrorMessage';
 import LoadMoreBtn from './components/loadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/imageModal/ImageModal';
-import { UnsplashResImage } from './api/unsplash-api';
+import './App.css';
 
 interface SelectedImage {
   src: string;
