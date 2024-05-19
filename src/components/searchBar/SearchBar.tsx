@@ -1,12 +1,18 @@
+import { FormEvent } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
-const SearchBar = ({ handleSearch }) => {
+interface SearchBarProps {
+  handleSearch: (inputValue: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => {
   const notify = () => toast.error('Please, fill in the field');
-  const handleSubmit = event => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.target;
-    const inputValue = form.elements.input.value;
+    const form = event.currentTarget;
+    const inputValue = (form.elements.namedItem('input') as HTMLInputElement)
+      .value;
     if (inputValue.trim() === '') {
       notify();
       form.reset();
