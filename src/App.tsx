@@ -7,15 +7,23 @@ import Loader from './components/loader/Loader';
 import ErrorMessage from './components/errorMessage/ErrorMessage';
 import LoadMoreBtn from './components/loadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/imageModal/ImageModal';
+import { UnsplashResImage } from './api/unsplash-api';
+
+interface SelectedImage {
+  src: string;
+  alt: string;
+}
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [searchValue, setSearchValue] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState<UnsplashResImage[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(
+    null
+  );
 
   useEffect(() => {
     async function fetchImages() {
@@ -35,7 +43,7 @@ function App() {
     }
   }, [searchValue, page]);
 
-  const handleSearch = async inputValue => {
+  const handleSearch = async (inputValue: string) => {
     setSearchValue(inputValue);
     setPage(1);
     setImages([]);
@@ -45,7 +53,7 @@ function App() {
     setPage(prevPage => prevPage + 1);
   };
 
-  const openModal = img => {
+  const openModal = (img: SelectedImage) => {
     setIsOpen(true);
     setSelectedImage(img);
   };
